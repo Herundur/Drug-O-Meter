@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drug-O-Meter", "Drug-O-Meter\Drug-O-Meter.csproj", "{F2DFEE53-9450-48F0-95A6-B9A98358A27D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F2DFEE53-9450-48F0-95A6-B9A98358A27D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2DFEE53-9450-48F0-95A6-B9A98358A27D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2DFEE53-9450-48F0-95A6-B9A98358A27D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2DFEE53-9450-48F0-95A6-B9A98358A27D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0406A240-74D4-4782-AB68-CDBD80704B6A}
+	EndGlobalSection
+EndGlobal
