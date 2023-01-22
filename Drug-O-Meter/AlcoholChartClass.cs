@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
+using LiveChartsCore.SkiaSharpView.Painting;
+using SkiaSharp;
 
 namespace AlcoholChart
 {
@@ -15,8 +17,18 @@ namespace AlcoholChart
             {
                 new LineSeries<double>
                 {
-                    Values = new double[] { 2, 1, 3, 5, 3, 4, 6 },
+                    Name = "Liter",
+                    Values = new List<double> { 1, 2, 3 },
                     Fill = null
+                },
+            };
+
+        public Axis[] XAxes { get; set; }
+            = new Axis[]
+            {
+                new Axis
+                {
+                    Labels = new List<string> { "benedikt", "mama", "wachtel" },
                 }
             };
     }
