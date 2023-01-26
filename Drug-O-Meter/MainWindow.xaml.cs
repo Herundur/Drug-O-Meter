@@ -28,7 +28,6 @@ namespace Drug_O_Meter
     public partial class MainWindow : Window
     {
         string todaysDate = DateTime.Now.ToString("dd.MM.yyyy");
-        int counter = 0;
 
         public MainWindow()
         {
@@ -39,43 +38,14 @@ namespace Drug_O_Meter
                 drugConsumtion consumtionToday = new drugConsumtion(todaysDate);
                 DirectoryClass.WriteToFile<drugConsumtion>($"./data/{consumtionToday.Date}", consumtionToday);
             }
-
+           
             InitializeComponent();
             
-            alcoholChart.XAxes[0].Labels = DirectoryClass.allDatesLabels();
-            alcoholChart.Series[0].Values = DirectoryClass.allDatesValues();
-        }
-        private void removeButton_Click(object sender, RoutedEventArgs e)
-        {
-            if (!(counter <= 0))
-            {
-                counter--;
-            }
-            count.Text = counter.ToString();
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
+        private void exitWindow(object sender, RoutedEventArgs e)
         {
-            counter++;
-            count.Text = counter.ToString();
-        }
-
-        private void updateButton_Click(object sender, RoutedEventArgs e)
-        {
-            string datePickerDate = datePicker.SelectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-
-            if (!datePicker.SelectedDate.HasValue)
-            {
-                /* POPUP WINDOW */
-                Trace.WriteLine("Theres no date specified in the date-picker.");
-                return;
-            }
-
-            drugConsumtion addConsumtion  = new drugConsumtion(datePickerDate, counter * 500, 0);
-            DirectoryClass.WriteToFile<drugConsumtion>($"./data/{addConsumtion.Date}", addConsumtion);
-            alcoholChart.XAxes[0].Labels = DirectoryClass.allDatesLabels();
-            alcoholChart.Series[0].Values = DirectoryClass.allDatesValues();
-
+            Close();
         }
     }
 }

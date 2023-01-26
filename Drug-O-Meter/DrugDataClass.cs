@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.RightsManagement;
@@ -15,20 +15,20 @@ namespace Drug_O_Meter
             this.Date = date;
         }
 
-        public drugConsumtion(string date, int milliliters, int grams)
+        public drugConsumtion(string date, double liters, double grams)
         {
             this.Date = date;
-            this.Milliliters = milliliters;
+            this.Liters = liters;
             this.Grams = grams;
         }
 
         public string Date
         { get; set; }
 
-        public int Milliliters
+        public double Liters
         { get; set; }
 
-        public int Grams 
+        public double Grams 
         { get; set; }
     }
 }

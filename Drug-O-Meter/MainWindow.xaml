@@ -5,26 +5,80 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Drug-O-Meter" Height="450" Width="800"
-        xmlns:local="clr-namespace:AlcoholChart"
-        xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF">
+        Title="Drug-O-Meter" Height="600" Width="920"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True"
+        xmlns:viewModel="clr-namespace:Drug_O_Meter.MVVM.ViewModel">
+
     <Window.DataContext>
-        <local:ViewModel x:Name="alcoholChart"/>
+        <viewModel:MainViewModel/>
     </Window.DataContext>
-    <Grid>
-        <Canvas Margin="187,23,200,0" Height="213" Width="413" VerticalAlignment="Top">
-            <lvc:CartesianChart
-            Series="{Binding Series}"
-            XAxes="{Binding XAxes}" Height="213" Width=" 413"
-            ZoomMode="X" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-        </Canvas>
-        <Canvas Margin="600,0,0,0" Background="Aqua">
-            <DatePicker Name="datePicker" DisplayDateEnd="{x:Static sys:DateTime.Today}" SelectedDate="{x:Static sys:DateTime.Now}" Canvas.Left="49" Canvas.Top="124"/>
-            <TextBlock x:Name="count" HorizontalAlignment="Left" Height="70" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="56" TextAlignment="Center" FontWeight="Bold" FontSize="48" Canvas.Left="72" Canvas.Top="182"/>
-            <Button x:Name="addButton" Content="+" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" FontSize="20" FontWeight="Bold" RenderTransformOrigin="-2.113,-1.952" Click="addButton_Click" Canvas.Left="150" Canvas.Top="197"/>
-            <Button x:Name="removeButton" Content="-" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Click="removeButton_Click" Canvas.Left="10" Canvas.Top="197"/>
-            <Button x:Name="updateButton" Content="Hinzufügen" HorizontalAlignment="Left" Height="36" VerticalAlignment="Top" Width="116" FontSize="20" FontWeight="Bold" RenderTransformOrigin="0.5,0.5" Click="updateButton_Click" Canvas.Left="42" Canvas.Top="292"/>
-        </Canvas>
-    </Grid>
+
+    <Border Background="#272537"
+            CornerRadius="20">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Drug-O-Meter"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Foreground="White"
+                       FontSize="22"
+                       Margin="20,0,0,0"/>
+
+            <Button Grid.Column="1"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Margin="654,10,0,0"
+                    Name="btn5"
+                    Click="exitWindow"
+                    Background="Transparent" 
+                    BorderBrush="Transparent"
+                    Foreground="White"
+                    FontSize="22" Width="66" Height="52">
+                ❌
+            </Button>
+
+            <StackPanel Grid.Row="1">
+                <RadioButton Content="Home"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             IsChecked="True"
+                             Command="{Binding HomeViewCommand}"/>
+
+                <RadioButton Content="Alkohol"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"
+                             Command="{Binding DiscoveryViewCommand}"/>
+                
+                <RadioButton Content="Cannabis"
+                             Height="50"
+                             Foreground="White"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}"/>
+
+            </StackPanel>
+
+            <ContentControl Grid.Row="1"
+                            Grid.Column="1"
+                            Margin="10"
+                            Content="{Binding CurrentView}"/>
+
+        </Grid>
+    </Border>
 
 </Window>

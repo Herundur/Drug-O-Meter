@@ -84,7 +84,7 @@ namespace Drug_O_Meter
                 if (fileNames().Contains(date))
                 {
                     drugConsumtion currentFile = DirectoryClass.ReadFromFile<drugConsumtion>($"./data/{date}");
-                    chartValueList.Add(currentFile.Milliliters / 500);
+                    chartValueList.Add(currentFile.Liters);
                 }
                 else
                 {
