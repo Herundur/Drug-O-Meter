@@ -15,7 +15,7 @@ namespace Drug_O_Meter
             this.Date = date;
         }
 
-        public drugConsumtion(string date, double liters, double grams)
+        public drugConsumtion(string date, float liters, float grams)
         {
             this.Date = date;
             this.Liters = liters;
@@ -25,10 +25,10 @@ namespace Drug_O_Meter
         public string Date
         { get; set; }
 
-        public double Liters
+        public float Liters
         { get; set; }
 
-        public double Grams 
+        public float Grams 
         { get; set; }
     }
 }

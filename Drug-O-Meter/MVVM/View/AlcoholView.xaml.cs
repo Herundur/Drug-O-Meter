@@ -1,5 +1,8 @@
-﻿using System;
+﻿using LiveChartsCore.SkiaSharpView.SKCharts;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +24,8 @@ namespace Drug_O_Meter.MVVM.View
     public partial class AlcoholView : UserControl
     {
 
-        double counter;
-        double litersLast31Days;
+        float counter = 0;
+        float litersLast31Days;
         public AlcoholView()
         {
             InitializeComponent();
@@ -31,13 +34,17 @@ namespace Drug_O_Meter.MVVM.View
             //alcoholChart.XAxes[0].Labels = DirectoryClass.allDatesLabels();
             alcoholChart.Series[0].Values = AlcoholData.MonthValues(out litersLast31Days);
             literLast31DaysTextBlock.Text = $"{litersLast31Days.ToString()} Liter";
+            LitersInTotalTextBlock.Text = $"{AlcoholData.LitersInTotal().ToString()} Liter";
+            LitersPerDayTextBlock.Text = $"Ø {AlcoholData.LitersAverageDay().ToString()} Liter";
+            SoberSinceTextBox.Text = AlcoholData.SoberSince();
+            SoberLongestSteakTextBox.Text = AlcoholData.SoberLongestStreak();
         }
-
+        
           private void removeButton_Click(object sender, RoutedEventArgs e)
             {
                 if (counter > 0)
                 {
-                    counter -= 0.5;
+                counter -= 0.5f;
                 }
                 count.Text = $"{counter.ToString()}L";
             }
@@ -46,7 +53,7 @@ namespace Drug_O_Meter.MVVM.View
             {
                 if (counter < 99)
                 {
-                    counter += 0.5;
+                    counter += 0.5f;
                 }
                 count.Text = $"{counter.ToString()}L";
         }
@@ -68,6 +75,10 @@ namespace Drug_O_Meter.MVVM.View
                 DirectoryClass.WriteToFile<drugConsumtion>($"./data/{addConsumtion.Date}", addConsumtion);
                 alcoholChart.Series[0].Values = AlcoholData.MonthValues(out litersLast31Days);
                 literLast31DaysTextBlock.Text = $"{litersLast31Days.ToString()} Liter";
+                LitersInTotalTextBlock.Text = $"{AlcoholData.LitersInTotal().ToString()} Liter";
+                LitersPerDayTextBlock.Text = $"Ø {AlcoholData.LitersAverageDay().ToString()} Liter";
+                SoberSinceTextBox.Text = AlcoholData.SoberSince();
+                SoberLongestSteakTextBox.Text = AlcoholData.SoberLongestStreak();
 
         }
     }

@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Drug-O-Meter" Height="600" Width="920"
+        Title="Drug-O-Meter" 
+        Height="555" 
+        Width="890"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -36,18 +38,48 @@
                        FontSize="22"
                        Margin="20,0,0,0"/>
 
-            <Button Grid.Column="1"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Left"
-                    Margin="654,10,0,0"
-                    Name="btn5"
+            <StackPanel Grid.Column="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right">
+
+
+                <Border Grid.Column="1"
+                        Width="800"
+                        Background="Transparent"
+                        Height="75"
+                        Name="DragWindow" 
+                        VerticalAlignment="Top" 
+                        MouseDown="DragWindow_MouseDown" />
+
+                <Button
+                    x:Name="btn4"
+                    Click="minimizeWindow"
+                    Background="Transparent"
+                    VerticalAlignment="Center"
+                    BorderBrush="Transparent"
+                    Foreground="White"
+                    FontSize="22"
+                    Content="➖"
+                    Width="40" 
+                    Height="40"
+                    Padding="0"/>
+
+                <Button
+                    DockPanel.Dock="Right"
+                    x:Name="btn5"
                     Click="exitWindow"
+                    VerticalAlignment="Center"
                     Background="Transparent" 
                     BorderBrush="Transparent"
                     Foreground="White"
-                    FontSize="22" Width="66" Height="52">
-                ❌
-            </Button>
+                    FontSize="22" 
+                    Content="❌" 
+                    Width="40"
+                    Height="40"
+                    Padding="0"
+                    Margin="0,0,10,0"/>
+
+            </StackPanel>
 
             <StackPanel Grid.Row="1">
                 <RadioButton Content="Home"
@@ -64,7 +96,7 @@
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}"
                              Command="{Binding DiscoveryViewCommand}"/>
-                
+
                 <RadioButton Content="Cannabis"
                              Height="50"
                              Foreground="White"
@@ -75,7 +107,7 @@
 
             <ContentControl Grid.Row="1"
                             Grid.Column="1"
-                            Margin="10"
+                            Margin="10,0,10,10"
                             Content="{Binding CurrentView}"/>
 
         </Grid>

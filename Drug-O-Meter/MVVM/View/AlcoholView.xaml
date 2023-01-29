@@ -9,21 +9,23 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="650">
+
 
     <UserControl.DataContext>
         <y:ViewModelChart x:Name="alcoholChart"/>
     </UserControl.DataContext>
 
-    <StackPanel>
+
+    <StackPanel Margin="0,0,0,0">
         <TextBlock Text="Bier" 
                    Foreground="White"
                    FontSize="28"
                    HorizontalAlignment="Left"
-                   Margin="0,0,0,15"/>
+                   Margin="0,0,0,5"/>
 
         <StackPanel Orientation="Horizontal"
-                    Margin="0,0,0,10">
+                    Margin="0,0,0,25">
 
             <Border Width="200"
                     Height="200"
@@ -31,7 +33,7 @@
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#00E676" Offset="0.0"/>
+                        <GradientStop Color="#70F570" Offset="0.0"/>
                         <GradientStop Color="#00B248" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
@@ -87,12 +89,13 @@
 
             <Grid Height="200">
 
-                <Border Width="400"
-                    Height="200">
+                <Border Width="450"
+                        Height="200"
+                        Margin="50, 0,0,0">
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#5bc3ff" Offset="0.0"/>
-                            <GradientStop Color="#3aa0ff" Offset="1"/>
+                            <GradientStop Color="#6B73FF" Offset="0.0"/>
+                            <GradientStop Color="#130CB7" Offset="1"/>
                         </LinearGradientBrush>
                     </Border.Background>
 
@@ -127,11 +130,13 @@
 
                 <Border Height="200">
                     <lvc:CartesianChart
+                            
                             Series="{Binding Series}"
                             YAxes="{Binding YAxes}"
                             XAxes="{Binding XAxes}"
                             Height="154" Width="465"
-                            HorizontalAlignment="Center" Margin="0,70.5,0,-23"/>
+                            HorizontalAlignment="Center" Margin="0,70.5,0,-23">
+                    </lvc:CartesianChart>
                 </Border>
 
             </Grid>
@@ -142,7 +147,7 @@
 
             <StackPanel.Resources>
                 <Style TargetType="{x:Type Border}">
-                    <Setter Property="Margin" Value="15,0,0,0"/>
+                    <Setter Property="Margin" Value="16.5,0,0,0"/>
                 </Style>
             </StackPanel.Resources>
 
@@ -150,22 +155,29 @@
                    Foreground="White"
                    FontSize="20"
                    HorizontalAlignment="Left"
-                   Margin="0,0,0,10"/>
+                   Margin="0,0,0,5"/>
 
             <StackPanel Orientation="Horizontal">
                 <Border Width="150"
                         Height="150"
-                        Background="#844eff"
                         CornerRadius="10"
                         Margin="0">
-
+                    
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#F761A1" Offset="0.0"/>
+                            <GradientStop Color="#8C1BAB" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
+                    
                     <StackPanel Margin="30,34,30,34">
                         <TextBlock Text="Insgesamt"
                                    Foreground="White"
                                    FontSize="15"
                                    HorizontalAlignment="Center"/>
 
-                        <TextBlock Text="254 Liter"
+                        <TextBlock Text="0 Liter"
+                                   Name="LitersInTotalTextBlock"
                                    Foreground="White"
                                    FontSize="20"
                                    FontWeight="Bold"
@@ -180,8 +192,14 @@
 
                 <Border Width="150"
                         Height="150"
-                        Background="#4eff91"
                         CornerRadius="10">
+
+                        <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#FCCF31" Offset="0.0"/>
+                            <GradientStop Color="#F55555" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
 
                     <StackPanel Margin="0,34,0,34" HorizontalAlignment="Center" Width="116">
                         <TextBlock Text="Pro Tag"
@@ -190,6 +208,7 @@
                                    HorizontalAlignment="Center"/>
 
                         <TextBlock Text="Ø 0.25 Liter"
+                                   Name="LitersPerDayTextBlock"
                                    Foreground="White"
                                    FontSize="20"
                                    FontWeight="Bold"
@@ -204,8 +223,14 @@
 
                 <Border Width="150"
                         Height="150"
-                        Background="#4e99ff"
                         CornerRadius="10">
+
+                    <Border.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#2AFADF" Offset="0.0"/>
+                            <GradientStop Color="#5151E5" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Border.Background>
 
                     <StackPanel Margin="0,34,0,34" HorizontalAlignment="Center" Width="116">
                         <TextBlock Text="Seit"
@@ -213,7 +238,8 @@
                                    FontSize="15"
                                    HorizontalAlignment="Center"/>
 
-                        <TextBlock Text="2 Tagen"
+                        <TextBlock Text="x Tagen"
+                                   Name="SoberSinceTextBox"
                                    Foreground="White"
                                    FontSize="20"
                                    FontWeight="Bold"
@@ -228,8 +254,14 @@
 
                 <Border Width="150"
                         Height="150"
-                        Background="#ecff4e"
                         CornerRadius="10">
+
+                    <Border.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
+                            <GradientStop Color="#FFF720" Offset="0.0"/>
+                            <GradientStop Color="#3CD500" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Border.Background>
 
                     <StackPanel Margin="0,34,0,34" HorizontalAlignment="Center" Width="130">
                         <TextBlock Text="Längste Abstinenz"
@@ -237,7 +269,8 @@
                                    FontSize="15"
                                    HorizontalAlignment="Center"/>
 
-                        <TextBlock Text="21 Tagen"
+                        <TextBlock Text="abc Tagen"
+                                   Name="SoberLongestSteakTextBox"
                                    Foreground="White"
                                    FontSize="20"
                                    FontWeight="Bold"

@@ -74,9 +74,9 @@ namespace Drug_O_Meter
             return stringDates;
         }
 
-        public static List<double> allDatesValues()
+        public static List<float> allDatesValues()
         {
-            List<double> chartValueList = new List<double>();
+            List<float> chartValueList = new List<float>();
             List<string> allDatesLabels = DirectoryClass.allDatesLabels();
 
             foreach (string date in allDatesLabels)
@@ -88,7 +88,7 @@ namespace Drug_O_Meter
                 }
                 else
                 {
-                    chartValueList.Add(Convert.ToDouble(0));
+                    chartValueList.Add(0);
                 }
             }
             //chartValueList.ForEach(i => Trace.Write(i));

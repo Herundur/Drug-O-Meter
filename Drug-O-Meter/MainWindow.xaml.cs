@@ -47,5 +47,20 @@ namespace Drug_O_Meter
         {
             Close();
         }
+
+        private void minimizeWindow(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void DragWindow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            Trace.WriteLine("asdasd");
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                DragMove();
+            }
+        }
+
     }
 }

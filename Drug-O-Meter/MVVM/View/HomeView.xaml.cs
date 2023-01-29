@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Drug_O_Meter.MVVM.View
 {
@@ -23,6 +24,20 @@ namespace Drug_O_Meter.MVVM.View
         public HomeView()
         {
             InitializeComponent();
+
+            LiveTimeLabel.Content = DateTime.Now.ToString("HH:mm");
+            DispatcherTimer LiveTime = new DispatcherTimer();
+            LiveTime.Interval = TimeSpan.FromSeconds(1);
+            LiveTime.Tick += timer_Tick;
+            LiveTime.Start();
+
+            HomeDate.Text = DateTime.Now.ToString("dd MMMM yyyy");
+            //HomeDate.HorizontalAlignment = HorizontalAlignment.Center;
+        }
+        void timer_Tick(object sender, EventArgs e)
+        {
+            LiveTimeLabel.Content = DateTime.Now.ToString("HH:mm");
         }
     }
+
 }
