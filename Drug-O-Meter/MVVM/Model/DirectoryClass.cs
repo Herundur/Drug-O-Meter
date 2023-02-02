@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 
-namespace Drug_O_Meter
+namespace Drug_O_Meter.MVVM.Model
 {
     internal static class DirectoryClass
     {
@@ -56,7 +56,7 @@ namespace Drug_O_Meter
                 if (orderedList[i].ToString() == orderedList.Last().ToString())
                 {
                     dates.Add(DateTime.ParseExact(orderedList[i], "dd.MM.yyyy", CultureInfo.InvariantCulture));
-                    break; 
+                    break;
                 }
 
                 var start = DateTime.ParseExact(orderedList[i], "dd.MM.yyyy", CultureInfo.InvariantCulture);
@@ -83,7 +83,7 @@ namespace Drug_O_Meter
             {
                 if (fileNames().Contains(date))
                 {
-                    drugConsumtion currentFile = DirectoryClass.ReadFromFile<drugConsumtion>($"./data/{date}");
+                    drugConsumtion currentFile = ReadFromFile<drugConsumtion>($"./data/{date}");
                     chartValueList.Add(currentFile.Liters);
                 }
                 else

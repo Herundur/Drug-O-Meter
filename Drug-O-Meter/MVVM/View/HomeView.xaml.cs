@@ -13,12 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Drug_O_Meter.MVVM.Model;
+using Drug_O_Meter.Properties;
 
 namespace Drug_O_Meter.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for HomeView.xaml
-    /// </summary>
     public partial class HomeView : UserControl
     {
         public HomeView()
@@ -26,18 +25,21 @@ namespace Drug_O_Meter.MVVM.View
             InitializeComponent();
 
             LiveTimeLabel.Content = DateTime.Now.ToString("HH:mm");
+            DateTime.Now.ToString("HH:mm");
             DispatcherTimer LiveTime = new DispatcherTimer();
             LiveTime.Interval = TimeSpan.FromSeconds(1);
             LiveTime.Tick += timer_Tick;
             LiveTime.Start();
-
             HomeDate.Text = DateTime.Now.ToString("dd MMMM yyyy");
-            //HomeDate.HorizontalAlignment = HorizontalAlignment.Center;
+
+            QuoteTextBlock.Text = HomeViewData.RandomQuote();
+
+            greetingsUser.Text = $"Hallo, {Properties.Settings.Default.Username}";
         }
+
         void timer_Tick(object sender, EventArgs e)
         {
             LiveTimeLabel.Content = DateTime.Now.ToString("HH:mm");
         }
     }
-
 }

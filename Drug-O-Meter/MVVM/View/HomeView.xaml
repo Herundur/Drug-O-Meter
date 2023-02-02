@@ -29,19 +29,20 @@
 
                     <StackPanel>
 
-                    <StackPanel.Resources>
-                        <Style TargetType="{x:Type Border}">
-                            <Setter Property="Margin" Value="0,65,0,0"/>
-                        </Style>
-                    </StackPanel.Resources>
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Margin" Value="0,75,0,0"/>
+                            </Style>
+                        </StackPanel.Resources>
 
-                    <Border>
-                        <TextBlock Text="Hallo, Paul"
+                        <Border>
+                            <TextBlock Text="Hallo, Paul"
                                 Foreground="White"
                                 HorizontalAlignment="Center"
                                 FontSize="38"
-                                Margin="0,0,0,0"/>
-                    </Border>
+                                Name="greetingsUser"
+                                Margin="0,-20,0,0"/>
+                        </Border>
 
                         <Border>
                             <StackPanel>
@@ -64,18 +65,17 @@
                         </Border>
 
                         <Border>
-                            <TextBlock Text="“My grandpa started walking five miles a day when he was 60.&#xA; Now he’s 97 years old and we have no clue where he is.”&#xA; - Anonymous"
+                            <TextBlock Text="No Quote"
+                                   Name="QuoteTextBlock"
                                    Foreground="White"
                                    TextAlignment="Center"
-                                   Height="100"
+                                   Height="91"
                                    Width="548"
-                                   FontSize="20"
-                                   Margin="0,0,0,0"/>
+                                   FontSize="20"/>
                         </Border>
                     </StackPanel>
                 </Grid>
             </Border>
-
         </StackPanel>
 
         <StackPanel>
@@ -89,6 +89,6 @@
             <StackPanel Orientation="Horizontal"/>
 
         </StackPanel>
-        
+
     </StackPanel>
 </UserControl>

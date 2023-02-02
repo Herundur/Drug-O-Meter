@@ -1,4 +1,5 @@
-﻿using LiveChartsCore.SkiaSharpView.SKCharts;
+﻿using Drug_O_Meter.MVVM.Model;
+using LiveChartsCore.SkiaSharpView.SKCharts;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

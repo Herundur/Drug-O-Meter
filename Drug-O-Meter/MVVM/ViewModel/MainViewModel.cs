@@ -11,9 +11,11 @@ namespace Drug_O_Meter.MVVM.ViewModel
     {
         public RelayCommand HomeViewCommand { get; set; }
         public RelayCommand DiscoveryViewCommand { get; set; }
-        public HomeViewModel HomeVM { get; set; }
+        public RelayCommand SettingsViewCommand { get; set; }
 
+        public HomeViewModel HomeVM { get; set; }
         public AlcoholViewModel DiscoveryVM { get; set; }
+        public SettingsViewModel SettingsVM { get; set; }
 
         private object _currentView;
 
@@ -31,6 +33,7 @@ namespace Drug_O_Meter.MVVM.ViewModel
         {
             HomeVM = new HomeViewModel();
             DiscoveryVM = new AlcoholViewModel();
+            SettingsVM = new SettingsViewModel();
 
             CurrentView = HomeVM;
 
@@ -43,6 +46,12 @@ namespace Drug_O_Meter.MVVM.ViewModel
             {
                 CurrentView = DiscoveryVM;
             });
+
+            SettingsViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = SettingsVM;
+            });
+
         }
     }
 }

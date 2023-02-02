@@ -16,7 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-using AlcoholChart;
+using Drug_O_Meter.MVVM.ViewModel;
+using Drug_O_Meter.MVVM.Model;
 using HarfBuzzSharp;
 using LiveChartsCore;
 using LiveChartsCore.SkiaSharpView;
@@ -38,9 +39,7 @@ namespace Drug_O_Meter
                 drugConsumtion consumtionToday = new drugConsumtion(todaysDate);
                 DirectoryClass.WriteToFile<drugConsumtion>($"./data/{consumtionToday.Date}", consumtionToday);
             }
-           
             InitializeComponent();
-            
         }
 
         private void exitWindow(object sender, RoutedEventArgs e)
@@ -55,12 +54,10 @@ namespace Drug_O_Meter
 
         private void DragWindow_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            Trace.WriteLine("asdasd");
             if (e.ChangedButton == MouseButton.Left)
             {
                 DragMove();
             }
         }
-
     }
 }

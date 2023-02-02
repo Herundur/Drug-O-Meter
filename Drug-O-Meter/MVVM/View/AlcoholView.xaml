@@ -5,7 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Drug_O_Meter.MVVM.View"
-             xmlns:y="clr-namespace:AlcoholChart"
+             xmlns:y="clr-namespace:Drug_O_Meter.MVVM.ViewModel"
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
@@ -76,9 +76,10 @@
                                Margin="57,70,57,70"/>
 
                     <Button
-                      FontSize="10"
+                      FontSize="12"
                       Foreground="White"
                       Content="Hinzufügen"
+                      Padding="0"
                       IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                       Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
                       ToolTip="Daten hinzufügen" Margin="56,158,56,10" Click="updateButton_Click" />
@@ -134,6 +135,7 @@
                             Series="{Binding Series}"
                             YAxes="{Binding YAxes}"
                             XAxes="{Binding XAxes}"
+                            TooltipPosition="Top"
                             Height="154" Width="465"
                             HorizontalAlignment="Center" Margin="0,70.5,0,-23">
                     </lvc:CartesianChart>

@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Globalization;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Markup;
+using System.Windows.Media;
+using System.Windows;
 
-namespace Drug_O_Meter
+namespace Drug_O_Meter.MVVM.Model
 {
     class AlcoholData
     {
@@ -74,7 +78,7 @@ namespace Drug_O_Meter
             foreach (string file in files)
             {
                 drugConsumtion currentFile = DirectoryClass.ReadFromFile<drugConsumtion>($"./data/{file}");
-                count += currentFile.Liters;
+            count += currentFile.Liters;
             }
 
             return count;
@@ -157,19 +161,19 @@ namespace Drug_O_Meter
                     break;
                 }
 
-                if (value == 0 && !(currentIndex == (values.Count - 1)))
+                if (value == 0 && !(currentIndex == values.Count - 1))
                 {
                     counter++;
                 }
-                else if (value != 0 && !(currentIndex == (values.Count - 1)))
+                else if (value != 0 && !(currentIndex == values.Count - 1))
                 {
                     largestCount = counter > largestCount ? counter : largestCount;
                     counter = 0;
                 }
-                else if (currentIndex == (values.Count - 1))
+                else if (currentIndex == values.Count - 1)
                 {
                     largestCount = counter > largestCount ? counter : largestCount;
-                    
+
                     switch (largestCount)
                     {
                         case 1:

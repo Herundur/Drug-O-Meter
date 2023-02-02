@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.RightsManagement;
@@ -12,14 +12,14 @@ namespace Drug_O_Meter
     {
         public drugConsumtion(string date)
         {
-            this.Date = date;
+            Date = date;
         }
 
         public drugConsumtion(string date, float liters, float grams)
         {
-            this.Date = date;
-            this.Liters = liters;
-            this.Grams = grams;
+            Date = date;
+            Liters = liters;
+            Grams = grams;
         }
 
         public string Date
@@ -28,7 +28,7 @@ namespace Drug_O_Meter
         public float Liters
         { get; set; }
 
-        public float Grams 
+        public float Grams
         { get; set; }
     }
 }

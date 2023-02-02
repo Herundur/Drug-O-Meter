@@ -9,7 +9,11 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Theme/MenuButtonTheme.xaml"/>
+                <ResourceDictionary Source="Theme/MenuButtonThemeAlcohol.xaml"/>
+                <ResourceDictionary Source="Theme/MenuButtonThemeHome.xaml"/>
+                <ResourceDictionary Source="Theme/MenuButtonThemeCannabis.xaml"/>
+                <ResourceDictionary Source="Theme/MenuButtonThemeEinstellungen.xaml"/>
+                <ResourceDictionary Source="Theme/TextboxTheme.xaml"/>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="green" SecondaryColor="green" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -20,6 +24,10 @@
 
             <DataTemplate DataType="{x:Type viewModel:AlcoholViewModel}">
                 <view:AlcoholView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                <view:SettingsView/>
             </DataTemplate>
 
         </ResourceDictionary>
