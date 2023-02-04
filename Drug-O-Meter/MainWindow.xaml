@@ -96,13 +96,14 @@
                              Foreground="White"
                              FontSize="14"
                              Style="{StaticResource MenuButtonThemeAlcohol}"
-                             Command="{Binding DiscoveryViewCommand}"/>
+                             Command="{Binding AlcoholViewCommand}"/>
 
                 <RadioButton Content="Cannabis"
                              Height="50"
                              Foreground="White"
                              FontSize="14"
-                             Style="{StaticResource MenuButtonThemeCannabis}"/>
+                             Style="{StaticResource MenuButtonThemeCannabis}"
+                             Command="{Binding CannabisViewCommand}"/>
 
                 <RadioButton
                              Margin="0,250,0,0"

@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Drug_O_Meter.MVVM.Model;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Drug_O_Meter.MVVM.View
 {
@@ -26,6 +14,7 @@ namespace Drug_O_Meter.MVVM.View
             InitializeComponent();
 
             usernameTextbox.Text = Properties.Settings.Default.Username;
+            startedCollecting.Text = Files.FirstFile();
         }
 
         public void SaveSettings()

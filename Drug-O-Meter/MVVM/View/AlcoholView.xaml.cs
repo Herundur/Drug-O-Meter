@@ -1,21 +1,7 @@
 ﻿using Drug_O_Meter.MVVM.Model;
-using LiveChartsCore.SkiaSharpView.SKCharts;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Drug_O_Meter.MVVM.View
 {
@@ -31,14 +17,12 @@ namespace Drug_O_Meter.MVVM.View
         {
             InitializeComponent();
 
-
-            //alcoholChart.XAxes[0].Labels = DirectoryClass.allDatesLabels();
-            alcoholChart.Series[0].Values = AlcoholData.MonthValues(out litersLast31Days);
+            alcoholChart.Series[0].Values = DataManager.MonthValues(out litersLast31Days, "Liters");
             literLast31DaysTextBlock.Text = $"{litersLast31Days.ToString()} Liter";
-            LitersInTotalTextBlock.Text = $"{AlcoholData.LitersInTotal().ToString()} Liter";
-            LitersPerDayTextBlock.Text = $"Ø {AlcoholData.LitersAverageDay().ToString()} Liter";
-            SoberSinceTextBox.Text = AlcoholData.SoberSince();
-            SoberLongestSteakTextBox.Text = AlcoholData.SoberLongestStreak();
+            LitersInTotalTextBlock.Text = $"{DataManager.InTotal("Liters").ToString()} Liter";
+            LitersPerDayTextBlock.Text = $"Ø {DataManager.AverageDay("Liters").ToString()} Liter";
+            SoberSinceTextBox.Text = DataManager.SoberSince("Liters");
+            SoberLongestSteakTextBox.Text = DataManager.SoberLongestStreak("Liters");
         }
         
           private void removeButton_Click(object sender, RoutedEventArgs e)
@@ -71,15 +55,18 @@ namespace Drug_O_Meter.MVVM.View
                 }
 
                 string datePickerDate = datePicker.SelectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                string todaysDate = DateTime.Now.ToString("dd.MM.yyyy");
 
-                drugConsumtion addConsumtion  = new drugConsumtion(datePickerDate, counter, 0);
-                DirectoryClass.WriteToFile<drugConsumtion>($"./data/{addConsumtion.Date}", addConsumtion);
-                alcoholChart.Series[0].Values = AlcoholData.MonthValues(out litersLast31Days);
+                drugConsumtion todaysFile = Files.Read<drugConsumtion>($"../../../Data/{todaysDate}");
+                drugConsumtion addConsumtion = new drugConsumtion(datePickerDate, counter, todaysFile.Grams);
+
+                Files.Write<drugConsumtion>($"../../../Data/{addConsumtion.Date}", addConsumtion);
+                alcoholChart.Series[0].Values = DataManager.MonthValues(out litersLast31Days, "Liters");
                 literLast31DaysTextBlock.Text = $"{litersLast31Days.ToString()} Liter";
-                LitersInTotalTextBlock.Text = $"{AlcoholData.LitersInTotal().ToString()} Liter";
-                LitersPerDayTextBlock.Text = $"Ø {AlcoholData.LitersAverageDay().ToString()} Liter";
-                SoberSinceTextBox.Text = AlcoholData.SoberSince();
-                SoberLongestSteakTextBox.Text = AlcoholData.SoberLongestStreak();
+                LitersInTotalTextBlock.Text = $"{DataManager.InTotal("Liters").ToString()} Liter";
+                LitersPerDayTextBlock.Text = $"Ø {DataManager.AverageDay("Liters").ToString()} Liter";
+                SoberSinceTextBox.Text = DataManager.SoberSince("Liters");
+                SoberLongestSteakTextBox.Text = DataManager.SoberLongestStreak("Liters");
 
         }
     }

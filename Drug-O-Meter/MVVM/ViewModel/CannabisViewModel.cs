@@ -1,6 +1,6 @@
 ﻿namespace Drug_O_Meter.MVVM.ViewModel
 {
-    internal class HomeViewModel
+    internal class CannabisViewModel
     {
     }
 }

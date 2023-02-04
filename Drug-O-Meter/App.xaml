@@ -26,9 +26,14 @@
                 <view:AlcoholView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:CannabisViewModel}">
+                <view:CannabisView/>
+            </DataTemplate>
+
             <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
                 <view:SettingsView/>
             </DataTemplate>
+            
 
         </ResourceDictionary>
     </Application.Resources>

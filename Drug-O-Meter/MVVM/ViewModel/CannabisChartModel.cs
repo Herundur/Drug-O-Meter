@@ -5,17 +5,17 @@ using LiveChartsCore.SkiaSharpView.Painting;
 using SkiaSharp;
 using Drug_O_Meter.MVVM.Model;
 
-namespace Drug_O_Meter.MVVM.ViewModel.Alcohol
+namespace Drug_O_Meter.MVVM.ViewModel.Cannabis
 {
 
-    public class ViewModelAlcoholChart
+    public class ViewModelCannabisChart
     {
         public ISeries[] Series { get; set; }
             = new ISeries[]
             {
                 new LineSeries<float>
                 {
-                    Name = "Liter",
+                    Name = "Joints",
                     Values = new List<float> { 1 },
                     Stroke = new SolidColorPaint(SKColors.White) { StrokeThickness = 2 },
                     Fill = null,
@@ -23,7 +23,7 @@ namespace Drug_O_Meter.MVVM.ViewModel.Alcohol
                     GeometryStroke = null,
                     LineSmoothness = 0,
                     TooltipLabelFormatter =
-                        (chartPoint) => $"{DataManager.LabelLast31Days()[chartPoint.Context.Index]}: {chartPoint.PrimaryValue}L",
+                        (chartPoint) => $"{DataManager.LabelLast31Days()[chartPoint.Context.Index]}: {chartPoint.PrimaryValue}J's",
 
                 },
             };

@@ -121,16 +121,17 @@
                 </Grid>
 
                 <Grid Margin="10,10,0,0">
-                    <TextBlock Text="Source Code"
+                    <TextBlock Text="Aufzeichnungsbeginn"
                            Foreground="White"
                            FontSize="12"
                            />
 
                     <TextBlock
-                           Text="HyperLink"
+                           Text="date"
                            Foreground="White"
                            FontSize="17"
-                           Margin="0,15,0,0">
+                           Margin="0,15,0,0"
+                           x:Name="startedCollecting">
                     </TextBlock>
                 </Grid>
 

@@ -1,20 +1,17 @@
 ﻿using Drug_O_Meter.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Drug_O_Meter.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject
     {
         public RelayCommand HomeViewCommand { get; set; }
-        public RelayCommand DiscoveryViewCommand { get; set; }
+        public RelayCommand AlcoholViewCommand { get; set; }
+        public RelayCommand CannabisViewCommand { get; set; }
         public RelayCommand SettingsViewCommand { get; set; }
 
         public HomeViewModel HomeVM { get; set; }
-        public AlcoholViewModel DiscoveryVM { get; set; }
+        public AlcoholViewModel AlcoholVM { get; set; }
+        public CannabisViewModel CannabisVM { get; set; }
         public SettingsViewModel SettingsVM { get; set; }
 
         private object _currentView;
@@ -32,7 +29,8 @@ namespace Drug_O_Meter.MVVM.ViewModel
         public MainViewModel() 
         {
             HomeVM = new HomeViewModel();
-            DiscoveryVM = new AlcoholViewModel();
+            AlcoholVM = new AlcoholViewModel();
+            CannabisVM = new CannabisViewModel();
             SettingsVM = new SettingsViewModel();
 
             CurrentView = HomeVM;
@@ -42,9 +40,14 @@ namespace Drug_O_Meter.MVVM.ViewModel
                 CurrentView = HomeVM;
             });
 
-            DiscoveryViewCommand = new RelayCommand(o =>
+            AlcoholViewCommand = new RelayCommand(o =>
             {
-                CurrentView = DiscoveryVM;
+                CurrentView = AlcoholVM;
+            });
+
+            CannabisViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = CannabisVM;
             });
 
             SettingsViewCommand = new RelayCommand(o =>

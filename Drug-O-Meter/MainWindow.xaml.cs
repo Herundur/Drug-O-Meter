@@ -32,14 +32,16 @@ namespace Drug_O_Meter
 
         public MainWindow()
         {
-            List<string> fileNames = DirectoryClass.fileNames();
+            List<string> fileNames = Files.Names();
 
             if (!fileNames.Contains(todaysDate))
             {
                 drugConsumtion consumtionToday = new drugConsumtion(todaysDate);
-                DirectoryClass.WriteToFile<drugConsumtion>($"./data/{consumtionToday.Date}", consumtionToday);
+                Files.Write<drugConsumtion>($"../../../Data/{consumtionToday.Date}", consumtionToday);
             }
             InitializeComponent();
+            Trace.WriteLine(Directory.GetCurrentDirectory());
+
         }
 
         private void exitWindow(object sender, RoutedEventArgs e)
