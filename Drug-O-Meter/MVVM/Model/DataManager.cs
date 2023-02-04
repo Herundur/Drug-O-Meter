@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Metrics;
+using System.IO;
 using System.Globalization;
 using System.Linq;
-using System.Windows.Markup;
-using System.Windows.Media;
+
 
 namespace Drug_O_Meter.MVVM.Model
 {
     class DataManager
     {
+        private static string folder;
+
+        private static string Folder
+        {
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DrugOMeter/data"); }
+        }
         public static List<string> Labels()
         {
             var orderedList = Files.Names();
@@ -47,9 +52,7 @@ namespace Drug_O_Meter.MVVM.Model
             {
                 if (Files.Names().Contains(date))
                 {
-                    drugConsumtion currentFile = Files.Read<drugConsumtion>($"../../../Data/{date}");
-                    //chartValueList.Add(currentFile.Liters);
-                    //chartValueList.Add(currentFile.GetType().GetProperty("Liters").GetValue(currentFile));
+                    drugConsumtion currentFile = Files.Read<drugConsumtion>($"{Folder}/{date}");
                     var value = currentFile.GetType().GetProperty(drug).GetValue(currentFile);
                     float floatValue = (float)value;
                     chartValueList.Add(floatValue);
@@ -122,7 +125,7 @@ namespace Drug_O_Meter.MVVM.Model
 
             foreach (string file in files)
             {
-                drugConsumtion currentFile = Files.Read<drugConsumtion>($"../../../Data/{file}");
+                drugConsumtion currentFile = Files.Read<drugConsumtion>($"{Folder}/{file}");
                 var value = currentFile.GetType().GetProperty(drug).GetValue(currentFile);
                 float floatValue = (float)value;
                 count += floatValue;

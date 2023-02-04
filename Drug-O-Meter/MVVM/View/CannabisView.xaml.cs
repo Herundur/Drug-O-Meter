@@ -1,5 +1,6 @@
 ﻿using Drug_O_Meter.MVVM.Model;
 using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -13,9 +14,10 @@ namespace Drug_O_Meter.MVVM.View
 
         float counter = 0;
         float litersLast31Days;
-
+        string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DrugOMeter/data");
         public CannabisView()
         {
+
             InitializeComponent();
 
             cannabisChart.Series[0].Values = DataManager.MonthValues(out litersLast31Days, "Grams");
@@ -59,10 +61,10 @@ namespace Drug_O_Meter.MVVM.View
                 string datePickerDate = datePicker.SelectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
                 string todaysDate = DateTime.Now.ToString("dd.MM.yyyy");
 
-                drugConsumtion todaysFile = Files.Read<drugConsumtion>($"../../../Data/{todaysDate}");
+                drugConsumtion todaysFile = Files.Read<drugConsumtion>($"{folder}/{todaysDate}");
                 drugConsumtion addConsumtion  = new drugConsumtion(datePickerDate, todaysFile.Liters, counter);
 
-                Files.Write<drugConsumtion>($"../../../Data/{addConsumtion.Date}", addConsumtion);
+                Files.Write<drugConsumtion>($"{folder}/{addConsumtion.Date}", addConsumtion);
 
                 cannabisChart.Series[0].Values = DataManager.MonthValues(out litersLast31Days, "Grams");
 

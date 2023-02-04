@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace Drug_O_Meter.MVVM.Model
 {
-    internal static class Files
+    public static class Files
     {
+        private static string folder;
+
+        private static string Folder
+        {
+            get { return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DrugOMeter/data"); }
+        }
         public static void Write<T>(string filePath, T objectToWrite, bool append = false)
         {
             using (Stream stream = File.Open(filePath, append ? FileMode.Append : FileMode.Create))
@@ -28,13 +34,14 @@ namespace Drug_O_Meter.MVVM.Model
 
         public static List<string> Names()
         {
+
             List<string> fileNames = new List<string>();
 
-            string[] fileEntries = Directory.GetFiles("../../../Data");
+            string[] fileEntries = Directory.GetFiles(Folder);
 
             foreach (string fileName in fileEntries)
             {
-                fileNames.Add(fileName.Substring(14));
+                fileNames.Add(fileName.Substring(fileName.Length - 10));
             }
 
             var orderedList = fileNames.OrderBy(x => DateTime.ParseExact(x, "dd.MM.yyyy", CultureInfo.InvariantCulture)).ToList();
