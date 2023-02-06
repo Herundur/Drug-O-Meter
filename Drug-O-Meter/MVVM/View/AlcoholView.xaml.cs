@@ -6,9 +6,7 @@ using System.Windows.Controls;
 
 namespace Drug_O_Meter.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for DiscoveryView.xaml
-    /// </summary>
+
     public partial class AlcoholView : UserControl
     {
 
@@ -28,48 +26,59 @@ namespace Drug_O_Meter.MVVM.View
             SoberLongestSteakTextBox.Text = DataManager.SoberLongestStreak("Liters");
         }
         
-          private void removeButton_Click(object sender, RoutedEventArgs e)
+        private void removeButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (counter > 0)
             {
-                if (counter > 0)
-                {
-                counter -= 0.5f;
-                }
-                count.Text = $"{counter.ToString()}L";
+            counter -= 0.5f;
             }
-
-            private void addButton_Click(object sender, RoutedEventArgs e)
-            {
-                if (counter < 99)
-                {
-                    counter += 0.5f;
-                }
-                count.Text = $"{counter.ToString()}L";
+            count.Text = $"{counter.ToString()}L";
         }
 
-            private void updateButton_Click(object sender, RoutedEventArgs e)
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (counter < 99)
             {
-                
+                counter += 0.5f;
+            }
+            count.Text = $"{counter.ToString()}L";
+        }
 
-                if (!datePicker.SelectedDate.HasValue)
-                {
+        public void updateContent()
+        {
+            alcoholChart.Series[0].Values = DataManager.MonthValues(out litersLast31Days, "Liters");
+            literLast31DaysTextBlock.Text = $"{litersLast31Days.ToString()} Liter";
+            LitersInTotalTextBlock.Text = $"{DataManager.InTotal("Liters").ToString()} Liter";
+            LitersPerDayTextBlock.Text = $"Ø {DataManager.AverageDay("Liters").ToString()} Liter";
+            SoberSinceTextBox.Text = DataManager.SoberSince("Liters");
+            SoberLongestSteakTextBox.Text = DataManager.SoberLongestStreak("Liters");
+        }
+            
+        private void updateButton_Click(object sender, RoutedEventArgs e)
+        {
 
-                    //Trace.WriteLine("Theres no date specified in the date-picker.");
-                    return;
-                }
+            if (!datePicker.SelectedDate.HasValue)
+            {
 
-                string datePickerDate = datePicker.SelectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
-                string todaysDate = DateTime.Now.ToString("dd.MM.yyyy");
+                //Trace.WriteLine("Theres no date specified in the date-picker.");
+                return;
+            }
 
-                drugConsumtion todaysFile = Files.Read<drugConsumtion>($"{folder}/{todaysDate}");
-                drugConsumtion addConsumtion = new drugConsumtion(datePickerDate, counter, todaysFile.Grams);
+            string datePickerDate = datePicker.SelectedDate.Value.ToString("dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
+            if (Files.Names().Contains(datePickerDate))
+            {
+                drugConsumtion fileFromStatedDate = Files.Read<drugConsumtion>($"{folder}/{datePickerDate}");
+                drugConsumtion addConsumtion = new drugConsumtion(datePickerDate, counter, fileFromStatedDate.Grams);
                 Files.Write<drugConsumtion>($"{folder}/{addConsumtion.Date}", addConsumtion);
-                alcoholChart.Series[0].Values = DataManager.MonthValues(out litersLast31Days, "Liters");
-                literLast31DaysTextBlock.Text = $"{litersLast31Days.ToString()} Liter";
-                LitersInTotalTextBlock.Text = $"{DataManager.InTotal("Liters").ToString()} Liter";
-                LitersPerDayTextBlock.Text = $"Ø {DataManager.AverageDay("Liters").ToString()} Liter";
-                SoberSinceTextBox.Text = DataManager.SoberSince("Liters");
-                SoberLongestSteakTextBox.Text = DataManager.SoberLongestStreak("Liters");
+            }
+            else 
+            {
+                drugConsumtion addConsumtion = new drugConsumtion(datePickerDate, counter, 0);
+                Files.Write<drugConsumtion>($"{folder}/{addConsumtion.Date}", addConsumtion);
+            }
+
+            updateContent();
 
         }
     }
