@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Globalization;
 using System.Linq;
-
+using System.Diagnostics;
 
 namespace Drug_O_Meter.MVVM.Model
 {
@@ -61,6 +61,14 @@ namespace Drug_O_Meter.MVVM.Model
                 {
                     chartValueList.Add(0);
                 }
+            }
+
+            foreach (float entry in chartValueList.ToList())
+            {
+                if (chartValueList[0] != 0) break;
+
+                chartValueList.RemoveAt(0);
+
             }
             return chartValueList;
         }
