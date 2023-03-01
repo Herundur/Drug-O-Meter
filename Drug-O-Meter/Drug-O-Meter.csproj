@@ -19,11 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Fonts\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="MVVM\View\CannabisView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -39,6 +34,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Fonts\" />
   </ItemGroup>
 
 </Project>

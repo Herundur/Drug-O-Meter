@@ -48,5 +48,10 @@ namespace Drug_O_Meter
                 DragMove();
             }
         }
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Trace.Write(sender);
+        }
     }
 }

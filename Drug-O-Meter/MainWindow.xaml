@@ -3,11 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="Drug-O-Meter" 
         Height="550" 
-        Width="885"
+        Width="960"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -19,17 +20,14 @@
     </Window.DataContext>
 
     <Border Background="#272537"
-            CornerRadius="20">
+            CornerRadius="10">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="200" />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="75"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
+
 
             <TextBlock Text="Drug-O-Meter"
                        VerticalAlignment="Center"
@@ -79,41 +77,65 @@
 
             </StackPanel>
 
+            <Border CornerRadius="10,0,0,10"
+                    Background="{StaticResource b1}">
+            </Border>
+            <!--NAVBAR-->
             <StackPanel Grid.Row="1" 
                         Height="450"
-                        VerticalAlignment="Top">
+                        VerticalAlignment="Top"
+                        Margin="0,16,0,0"
+                        Background="Transparent">
+                
+                <TextBlock Text="Drug-O-Meter"
+                            Foreground="#FFFFFF"
+                            FontSize="21"
+                            FontFamily="Inter"
+                            FontWeight="ExtraBold"
+                            VerticalAlignment="Center"
+                            Margin="25,32,0,32"/>
+                
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource homeOn}"
+                                 IsChecked="True"
+                                 Command="{Binding HomeViewCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="Home" Style="{StaticResource menuButtonIcon}" 
+                                     Tag="{StaticResource homeOff}"/>
+                        <TextBlock Text="Home" Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
 
-                <RadioButton Content="Home"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonThemeHome}"
-                             IsChecked="True"
-                             Command="{Binding HomeViewCommand}"/>
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource alcoholOn}"
+                                 Command="{Binding AlcoholViewCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="GlassMugVariant" Style="{StaticResource menuButtonIcon}" 
+                                     Tag="{StaticResource alcoholOff}"/>
+                        <TextBlock Text="Alkohol" Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
 
-                <RadioButton Content="Alkohol"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonThemeAlcohol}"
-                             Command="{Binding AlcoholViewCommand}"/>
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource cannabisOn}"
+                                 Command="{Binding CannabisViewCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="Cannabis" Style="{StaticResource menuButtonIcon}" 
+                                     Tag="{StaticResource cannabisOff}"/>
+                        <TextBlock Text="Cannabis" Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
 
-                <RadioButton Content="Cannabis"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Style="{StaticResource MenuButtonThemeCannabis}"
-                             Command="{Binding CannabisViewCommand}"/>
-
-                <RadioButton
-                             Margin="0,250,0,0"
-                             Content="Einstellungen"
-                             VerticalAlignment="Bottom"
-                             Height="50"
-                             Foreground="White"
-                             FontSize="14"
-                             Command="{Binding SettingsViewCommand}"
-                             Style="{StaticResource MenuButtonThemeEinstellungen}"/>
+                <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource settingsOn}"
+                                Margin="0,0,0,0"
+                                 Command="{Binding SettingsViewCommand}">
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon Kind="gear" Style="{StaticResource menuButtonIcon}" 
+                                     Tag="{StaticResource settingsOff}"/>
+                        <TextBlock Text="Einstellungen" Style="{StaticResource menuButtonText}"/>
+                    </StackPanel>
+                </RadioButton>
 
             </StackPanel>
 
