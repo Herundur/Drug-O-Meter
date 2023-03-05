@@ -23,7 +23,69 @@
                    FontSize="28"
                    HorizontalAlignment="Left"
                    Margin="0,0,0,5"/>
+        <Border Height="48"
+                                Width="220"
+                                Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32" />
+                    <ColumnDefinition Width="94"/>
+                    <ColumnDefinition Width="94"/>
+                </Grid.ColumnDefinitions>
 
+                <Border Grid.Column="0">
+                    <materialDesign:PackIcon
+                                            Kind="GlassMugVariant"
+                                            Foreground="Yellow"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Height="24"
+                                            Width="24"/>
+                </Border>
+
+                <Border Grid.Column="1">
+                    <DockPanel Height="30"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Left"
+                                            Margin="8,8,0,0">
+                        <TextBlock Text="Bier"
+                                               Foreground="{StaticResource w2}"
+                                               FontSize="14"
+                                               FontWeight="Medium"
+                                               FontFamily="Inter"
+                                               DockPanel.Dock="Top"/>
+                        <TextBlock Text="123123"
+                                               Foreground="{StaticResource w3}"
+                                               FontSize="12"
+                                               FontWeight="Normal"
+                                               FontFamily="Inter"
+                                               DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                </Border>
+
+                <Border Grid.Column="2">
+                    <StackPanel Height="48"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Right"
+                                            Margin="0,0,8,0">
+                        <TextBlock Text="123123"
+                                               TextAlignment="Right"
+                                               Foreground="{StaticResource w2}"
+                                               FontSize="14"
+                                               FontWeight="Medium"
+                                               FontFamily="Inter"/>
+                        <TextBlock Text="123123"
+                                               TextAlignment="Right"
+                                               Foreground="{StaticResource w3}"
+                                               FontSize="12"
+                                               FontWeight="Normal"
+                                               FontFamily="Inter"/>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+
+        </Border>
         <StackPanel Orientation="Horizontal"
                     Margin="0,0,0,25">
 

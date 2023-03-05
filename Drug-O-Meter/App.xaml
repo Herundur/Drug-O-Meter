@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="Style/TextboxStyle.xaml"/>
                 <ResourceDictionary Source="Style/UIColors.xaml"/>
                 <ResourceDictionary Source="Style/ButtonStyles.xaml"/>
-                <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="green" SecondaryColor="green" />
+                <materialDesign:BundledTheme BaseTheme="Dark" PrimaryColor="Grey" SecondaryColor="green" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
 

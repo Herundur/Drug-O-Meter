@@ -9,283 +9,248 @@
              xmlns:lvc="clr-namespace:LiveChartsCore.SkiaSharpView.WPF;assembly=LiveChartsCore.SkiaSharpView.WPF"
              mc:Ignorable="d"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
-             d:DesignHeight="450" d:DesignWidth="650">
+             d:DesignHeight="450" d:DesignWidth="760">
 
 
     <UserControl.DataContext>
         <y:ViewModelAlcoholChart x:Name="alcoholChart"/>
     </UserControl.DataContext>
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="59*"/>
+        </Grid.RowDefinitions>
 
-    <StackPanel Margin="0,0,0,0">
-        <TextBlock Text="Bier" 
-                   Foreground="White"
-                   FontSize="28"
-                   HorizontalAlignment="Left"
-                   Margin="0,0,0,5"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal"
-                    Margin="0,0,0,25">
-
-            <Border Width="200"
-                    Height="200"
-                    CornerRadius="10">
-
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                        <GradientStop Color="#00ee6e" Offset="0.0"/>
-                        <GradientStop Color="#2a8d08" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-
-                <Grid>
-                    <DatePicker
-                      Name="datePicker"
-                      Width="100"
-                      DisplayDateEnd="{x:Static sys:DateTime.Today}"
-                      SelectedDate="{x:Static sys:DateTime.Now}"
-                      materialDesign:HintAssist.Hint="Datum"
-                      materialDesign:TextFieldAssist.HasClearButton="True"
-                      Style="{StaticResource MaterialDesignFloatingHintDatePicker}" Margin="50,10,50,0" VerticalAlignment="Top" />
-                    <Button
-                      Width="30"
-                      Height="30"
-                      Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryLightButton}"
-                      ToolTip="Liter hinzufügen" Margin="148,85,22,85" Click="addButton_Click">
-                        <materialDesign:PackIcon
-                        Kind="PlusThick" Height="20" Width="20" Foreground="White" VerticalAlignment="Center"/>
-                    </Button>
-
-                    <Button
-                      Width="30"
-                      Height="30"
-                      Style="{StaticResource MaterialDesignFloatingActionMiniSecondaryLightButton}"
-                      ToolTip="Liter entfernen" Margin="22,85,148,85" Click="removeButton_Click">
-                        <materialDesign:PackIcon
-                        Kind="MinusThick" Height="20" Width="20" VerticalAlignment="Center" Foreground="White"/>
-                    </Button>
-
-                    <TextBlock x:Name="count"
-                               Text="0L"
-                               FontWeight="Bold"
-                               TextAlignment="Center"
-                               FontSize="42"
-                               Foreground="White"
-                               Margin="57,70,57,70"/>
-
-                    <Button
-                      FontSize="12"
-                      Foreground="White"
-                      Content="Hinzufügen"
-                      Padding="0"
-                      Style="{StaticResource MaterialDesignRaisedSecondaryLightButton}"
-                      ToolTip="Daten hinzufügen" Margin="56,158,56,10" Click="updateButton_Click" />
-                </Grid>
+        <StackPanel Grid.RowSpan="2">
 
 
+            <Border Width="220"
+                    Height="176"
+                    CornerRadius="10"
+                    Background="{StaticResource b1}"
+                    Margin="0,0,0,16">
+
+                <StackPanel>
+
+                    <TextBlock Text="Bierkonsum"
+                               FontFamily="Inter"
+                               FontWeight="SemiBold"
+                               FontSize="17"
+                               Foreground="{StaticResource w1}"
+                               Margin="20,8,0,8"/>
+
+                    <DatePicker Name="datePicker"
+                                DisplayDateEnd="{x:Static sys:DateTime.Today}"
+                                SelectedDate="{x:Static sys:DateTime.Now}"
+                                Width="180"
+                                Height="32"
+                                FontFamily="Inter"
+                                FontSize="11"
+                                materialDesign:DatePickerAssist.OutlinedBorderActiveThickness="2.5"
+                                materialDesign:DatePickerAssist.OutlinedBorderInactiveThickness="2"
+                                FontWeight="Normal"
+                                Padding="8,0,8,0"
+                                Foreground="{StaticResource w1}"
+                                BorderBrush="{StaticResource w3}"
+                                HorizontalAlignment="Center"
+                                materialDesign:HintAssist.Hint="Datum"
+                                Style="{StaticResource MaterialDesignOutlinedDatePicker}" />
+
+                    <StackPanel Orientation="Horizontal"  
+                                Margin="0,8,0,0"
+                                Height="32"
+                                Width="180">
+
+                        <Border Background="{StaticResource b4}"
+                                Width="32"
+                                Height="32"
+                                CornerRadius="5">
+
+                            <Grid>
+                                <materialDesign:PackIcon Kind="Minus"
+                                                    Foreground="{StaticResource w1}"
+                                                    Width="24"
+                                                    Height="24"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        ToolTip="Liter entfernen"
+                                        Click="removeButton_Click"/>
+
+                            </Grid>
+
+                        </Border>
+
+                        <TextBox
+                            Name="count"
+                            Margin="8,0,8,0"
+                            Width="100"
+                            Height="32"
+                            Padding="8,6,0,0"
+                            VerticalAlignment="Center"
+                            FontSize="11"
+                            BorderThickness="2"
+                            IsReadOnly="True"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            Foreground="{StaticResource w1}"
+                            BorderBrush="{StaticResource w3}"
+                            materialDesign:HintAssist.Hint="Liter"
+                            TextWrapping="Wrap"/>
+
+                        <Border Background="{StaticResource b4}"
+                                Width="32"
+                                Height="32"
+                                CornerRadius="5">
+
+                            <Grid>
+                                <materialDesign:PackIcon Kind="Plus"
+                                                    Foreground="{StaticResource w1}"
+                                                    Width="24"
+                                                    Height="24"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
+                                <Button Background="Transparent"
+                                        BorderBrush="Transparent"
+                                        ToolTip="Liter hinzufügen"
+                                        Click="addButton_Click"/>
+
+                            </Grid>
+
+                        </Border>
+                    </StackPanel>
+
+                    <Border Width="180"
+                            Height="40"
+                            Margin="0,8,0,0"
+                            Background="{StaticResource b4}"
+                            CornerRadius="5">
+
+                        <Grid>
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="NotePlus"
+                                                         Foreground="{StaticResource w1}"
+                                                         Height="24"
+                                                         Width="24"
+                                                         VerticalAlignment="Center"
+                                                         Margin="35,0,0,0"/>
+                                <TextBlock Text="Hinzufügen"
+                                           FontWeight="SemiBold"
+                                           FontSize="14"
+                                           FontFamily="Inter"
+                                           Foreground="{StaticResource w1}"
+                                           VerticalAlignment="Center"
+                                           Margin="8,0,0,0"
+                                           />
+                            </StackPanel>
+
+                            <Button Background="Transparent"
+                                    BorderBrush="Transparent"
+                                    ToolTip="Daten hinzufügen"
+                                    Click="updateButton_Click"
+                                    Height="40"/>
+                        </Grid>
+
+                    </Border>
+                </StackPanel>
             </Border>
 
-            <Grid Height="200">
+            <Border Grid.Column="0"
+                    Width="220"
+                    Height="360"
+                    Background="{StaticResource b1}"
+                    CornerRadius="10">
 
-                <Border Width="450"
-                        Height="200"
-                        Margin="50, 0,0,0">
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#6B73FF" Offset="0.0"/>
-                            <GradientStop Color="#130CB7" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
+                <StackPanel>
 
-                    <Border.Clip>
-                        <RectangleGeometry RadiusX="10"
-                                       RadiusY="10"
-                                       Rect="0,0,400,200"/>
-                    </Border.Clip>
+                    <TextBlock Text="Letzte Einträge"
+                           FontSize="17"
+                           FontWeight="SemiBold"
+                           FontFamily="Inter"
+                           Foreground="{StaticResource w1}"
+                           Margin="16"/>
 
-                    <Grid>
+                    <ItemsControl Name="recentEntries" Height="300">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Height="48"
+                                    Width="220"
+                                    Grid.Column="0">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="32" />
+                                            <ColumnDefinition Width="94"/>
+                                            <ColumnDefinition Width="94"/>
+                                        </Grid.ColumnDefinitions>
 
-                        <StackPanel>
-                            <TextBlock Text="letzten 31 Tage"
-                                   Foreground="White"
-                                   FontSize="14"
-                                   Margin="20,10,0,0"/>
+                                        <Border Grid.Column="0">
+                                            <materialDesign:PackIcon
+                                                Kind="{Binding IconKind}"
+                                                Foreground="{StaticResource alcoholOn}"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                Height="24"
+                                                Width="24"/>
+                                        </Border>
 
-                            <TextBlock Text="12 Liter"
-                                   Name="literLast31DaysTextBlock"
-                                   Foreground="White"
-                                   FontWeight="Bold"
-                                   FontSize="28"
-                                   Margin="20,-7,0,0" Height="35"/>
+                                        <Border Grid.Column="1">
+                                            <DockPanel Height="30"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Left"
+                                                Margin="4,0,0,0">
+                                                <TextBlock Text="{Binding Beer}"
+                                                   Foreground="{StaticResource w2}"
+                                                   FontSize="14"
+                                                   FontWeight="Medium"
+                                                   FontFamily="Inter"
+                                                   DockPanel.Dock="Top"/>
+                                                <TextBlock Text="{Binding Nummer}"
+                                                   Foreground="{StaticResource w3}"
+                                                   FontSize="12"
+                                                   FontWeight="Normal"
+                                                   FontFamily="Inter"
+                                                   DockPanel.Dock="Bottom"/>
+                                            </DockPanel>
+                                        </Border>
 
-                            <TextBlock Text="getrunken"
-                                   Foreground="White"
-                                   FontSize="14"
-                                   Margin="20,-4,0,0"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
+                                        <Border Grid.Column="2">
+                                            <DockPanel Height="30"
+                                                VerticalAlignment="Center"
+                                                HorizontalAlignment="Right"
+                                                Margin="0,0,0,0">
+                                                <TextBlock Text="{Binding Value}"
+                                                   TextAlignment="Right"
+                                                   Foreground="{StaticResource w2}"
+                                                   FontSize="14"
+                                                   FontWeight="Medium"
+                                                   FontFamily="Inter"
+                                                   DockPanel.Dock="Top"/>
+                                                <TextBlock Text="{Binding Date}"
+                                                   TextAlignment="Right"
+                                                   Foreground="{StaticResource w3}"
+                                                   FontSize="12"
+                                                   FontWeight="Normal"
+                                                   FontFamily="Inter"
+                                                   DockPanel.Dock="Bottom"/>
+                                            </DockPanel>
+                                        </Border>
 
-                <Border Height="200">
-                    <lvc:CartesianChart
-                            
-                            Series="{Binding Series}"
-                            YAxes="{Binding YAxes}"
-                            XAxes="{Binding XAxes}"
-                            TooltipPosition="Top"
-                            Height="154" Width="465"
-                            HorizontalAlignment="Center" Margin="0,70.5,0,-23">
-                    </lvc:CartesianChart>
-                </Border>
+                                    </Grid>
 
-            </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
 
+                </StackPanel>
+
+            </Border>
         </StackPanel>
-
-        <StackPanel>
-
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="Margin" Value="16.5,0,0,0"/>
-                </Style>
-            </StackPanel.Resources>
-
-            <TextBlock Text="Überblick"
-                   Foreground="White"
-                   FontSize="20"
-                   HorizontalAlignment="Left"
-                   Margin="0,0,0,5"/>
-
-            <StackPanel Orientation="Horizontal">
-                <Border Width="150"
-                        Height="150"
-                        CornerRadius="10"
-                        Margin="0">
-                    
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#F761A1" Offset="0.0"/>
-                            <GradientStop Color="#8C1BAB" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-                    
-                    <StackPanel Margin="30,34,30,34">
-                        <TextBlock Text="Insgesamt"
-                                   Foreground="White"
-                                   FontSize="15"
-                                   HorizontalAlignment="Center"/>
-
-                        <TextBlock Text="0 Liter"
-                                   Name="LitersInTotalTextBlock"
-                                   Foreground="White"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   HorizontalAlignment="Center"/>
-
-                        <TextBlock Text="getrunken"
-                                   Foreground="White"
-                                   FontSize="15"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Width="150"
-                        Height="150"
-                        CornerRadius="10">
-
-                        <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#FCCF31" Offset="0.0"/>
-                            <GradientStop Color="#F55555" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-
-                    <StackPanel Margin="0,34,0,34" HorizontalAlignment="Center" Width="116">
-                        <TextBlock Text="Pro Tag"
-                                   Foreground="White"
-                                   FontSize="15"
-                                   HorizontalAlignment="Center"/>
-
-                        <TextBlock Text="Ø 0.25 Liter"
-                                   Name="LitersPerDayTextBlock"
-                                   Foreground="White"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   HorizontalAlignment="Center"/>
-
-                        <TextBlock Text="getrunken"
-                                   Foreground="White"
-                                   FontSize="15"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Width="150"
-                        Height="150"
-                        CornerRadius="10">
-
-                    <Border.Background>
-                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#2AFADF" Offset="0.0"/>
-                            <GradientStop Color="#5151E5" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Border.Background>
-
-                    <StackPanel Margin="0,34,0,34" HorizontalAlignment="Center" Width="116">
-                        <TextBlock Text="Seit"
-                                   Foreground="White"
-                                   FontSize="15"
-                                   HorizontalAlignment="Center"/>
-
-                        <TextBlock Text="x Tagen"
-                                   Name="SoberSinceTextBox"
-                                   Foreground="White"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   HorizontalAlignment="Center"/>
-
-                        <TextBlock Text="nüchtern"
-                                   Foreground="White"
-                                   FontSize="15"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-
-                <Border Width="150"
-                        Height="150"
-                        CornerRadius="10">
-
-                    <Border.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,2">
-                            <GradientStop Color="#e60b09" Offset="0.0"/>
-                            <GradientStop Color="#ad336d" Offset="1"/>
-                        </LinearGradientBrush>
-                    </Border.Background>
-
-                    <StackPanel Margin="0,34,0,34" HorizontalAlignment="Center" Width="130">
-                        <TextBlock Text="Längste Abstinenz"
-                                   Foreground="White"
-                                   FontSize="15"
-                                   HorizontalAlignment="Center"/>
-
-                        <TextBlock Text="abc Tagen"
-                                   Name="SoberLongestSteakTextBox"
-                                   Foreground="White"
-                                   FontSize="20"
-                                   FontWeight="Bold"
-                                   HorizontalAlignment="Center"/>
-
-                        <TextBlock Text="lang"
-                                   Foreground="White"
-                                   FontSize="15"
-                                   HorizontalAlignment="Center"/>
-                    </StackPanel>
-                </Border>
-
-            </StackPanel>
-
-        </StackPanel>
-
-    </StackPanel>
-
+    </Grid>
 </UserControl>

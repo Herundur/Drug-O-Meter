@@ -139,7 +139,7 @@ namespace Drug_O_Meter.MVVM.Model
                 count += floatValue;
             }
 
-            return count;
+            return (float)Math.Round(count, 2);
         }
 
         public static float AverageDay(string drug)
@@ -249,6 +249,37 @@ namespace Drug_O_Meter.MVVM.Model
             }
 
             return text;
+        }
+
+        public static List<List<string>> Entries(string drug)
+        {
+            List<List<string>> entries = new List<List<string>>();
+            List<string> files = Files.Names();
+            files.Reverse();
+
+            int i = files.Count();
+
+            foreach (string date in files)
+            {
+                drugConsumtion currentFile = Files.Read<drugConsumtion>($"{Folder}/{date}");
+                var value = currentFile.GetType().GetProperty(drug).GetValue(currentFile);
+                float floatValue = (float)value;
+
+                if (floatValue != 0)
+                {
+                    List<string> list = new List<string>() {date, floatValue.ToString(), i.ToString()};
+                    entries.Add(list);
+                    i -= 1;
+                }
+
+                if (entries.Count > 5)
+                {
+                    break;
+                }
+
+            }
+
+            return entries;
         }
     }
 }
