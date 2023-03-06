@@ -9,6 +9,7 @@
         Title="Drug-O-Meter" 
         Height="550" 
         Width="960"
+        
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
@@ -19,68 +20,20 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
-    <Border Background="#272537"
-            CornerRadius="10">
+    <Border Background="{StaticResource  b2}"
+            CornerRadius="10"
+            ClipToBounds="True">
+        
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="200" />
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-
-
-            <TextBlock Text="Drug-O-Meter"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Foreground="White"
-                       FontSize="22"
-                       Margin="20,0,0,0"/>
-
-            <StackPanel Grid.Column="1"
-                        Orientation="Horizontal"
-                        HorizontalAlignment="Right">
-
-
-                <Border Grid.Column="1"
-                        Width="598"
-                        Background="Transparent"
-                        Height="75"
-                        Name="DragWindow" 
-                        VerticalAlignment="Top" 
-                        MouseDown="DragWindow_MouseDown" />
-                <Button
-                    x:Name="btn4"
-                    Click="minimizeWindow"
-                    Background="Transparent"
-                    BorderBrush="Transparent"
-                    Foreground="White"
-                    FontSize="15"
-                    Content="➖"
-                    Width="30" 
-                    Height="30"
-                    Padding="0"/>
-
-                <Button
-                    DockPanel.Dock="Right"
-                    x:Name="btn5"
-                    Click="exitWindow"
-                    VerticalAlignment="Center"
-                    Background="Transparent" 
-                    BorderBrush="Transparent"
-                    Foreground="White"
-                    FontSize="15" 
-                    Content="❌" 
-                    Width="30"
-                    Height="30"
-                    Padding="0"
-                    Margin="0,0,10,0" RenderTransformOrigin="0.567,-0.033"/>
-
-            </StackPanel>
-
+            <!--NAVBAR-->
             <Border CornerRadius="10,0,0,10"
                     Background="{StaticResource b1}">
             </Border>
-            <!--NAVBAR-->
             <StackPanel Grid.Row="1" 
                         Height="450"
                         VerticalAlignment="Top"
@@ -139,11 +92,92 @@
 
             </StackPanel>
 
-            <ContentControl Grid.Row="1"
+            <!--View-->
+            <Grid Grid.Column="1">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="24"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <StackPanel x:Name="pnlControlBar"
+                            Grid.Row="0"
+                            Orientation="Horizontal"
+                            FlowDirection="RightToLeft"
+                            Background="Transparent"
+                            Margin="0,0,0,0"
+                            MouseLeftButtonDown="DragWindow_MouseDown">
+
+                    
+                    <Grid x:Name="CloseButtonGrid">
+                        <Grid.Resources>
+                        </Grid.Resources>
+
+
+                        <Border CornerRadius="10,0,0,0">
+                            <Border.Resources>
+                                <Style TargetType="Border">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=CloseButtonGrid, Path=IsMouseOver}" Value="True">
+                                            <Setter Property="Background" Value="#cd1a2b"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Resources>
+                        </Border>
+                        
+                        <md:PackIcon Kind="WindowClose"
+                                     Foreground="{StaticResource w1}"
+                                     Height="16"
+                                     Width="16"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
+                        <Button Height="24"
+                                Width="32"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                Click="exitWindow"
+                                >
+
+                        </Button>
+
+
+                    </Grid>
+                    
+                    <Grid>
+                        
+                        <Grid.Resources>
+                            <Style TargetType="Grid">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="{StaticResource b4}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Grid.Resources>
+                        
+                        
+                        <md:PackIcon Kind="Minimize"
+                                     Foreground="{StaticResource w1}"
+                                     Height="16"
+                                     Width="16"
+                                     VerticalAlignment="Center"
+                                     HorizontalAlignment="Center"/>
+                        <Button Height="24"
+                                Width="32"
+                                Background="Transparent"
+                                BorderBrush="Transparent"
+                                Click="minimizeWindow"/>
+                    </Grid>
+                </StackPanel>
+                
+                
+                <ContentControl Grid.Row="1"
                             Grid.Column="1"
                             Margin="10,0,0,0"
                             Content="{Binding CurrentView}"/>
 
+            </Grid>
         </Grid>
     </Border>
 
