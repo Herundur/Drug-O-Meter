@@ -43,9 +43,9 @@ namespace Drug_O_Meter.MVVM.Model
             return stringDates;
         }
 
-        public static List<float> Values(string drug)
+        public static List<double> Values(string drug)
         {
-            List<float> chartValueList = new List<float>();
+            List<double> chartValueList = new List<double>();
             List<string> allDatesLabelsList = Labels();
 
             foreach (string date in allDatesLabelsList)
@@ -54,7 +54,7 @@ namespace Drug_O_Meter.MVVM.Model
                 {
                     drugConsumtion currentFile = Files.Read<drugConsumtion>($"{Folder}/{date}");
                     var value = currentFile.GetType().GetProperty(drug).GetValue(currentFile);
-                    float floatValue = (float)value;
+                    double floatValue = (double)value;
                     chartValueList.Add(floatValue);
                 }
                 else
@@ -63,7 +63,7 @@ namespace Drug_O_Meter.MVVM.Model
                 }
             }
 
-            foreach (float entry in chartValueList.ToList())
+            foreach (double entry in chartValueList.ToList())
             {
                 if (chartValueList[0] != 0) break;
 
@@ -72,12 +72,12 @@ namespace Drug_O_Meter.MVVM.Model
             }
             return chartValueList;
         }
-        public static List<float> MonthValues(out float literCount, string drug)
+        public static List<double> MonthValues(out double literCount, string drug)
         {
-            List<float> availableData = Values(drug).ToList();
+            List<double> availableData = Values(drug).ToList();
             availableData.Reverse();
 
-            List<float> data = new List<float>();
+            List<double> data = new List<double>();
             int i;
 
             for (i = 1; i < 32; i++)
@@ -92,9 +92,9 @@ namespace Drug_O_Meter.MVVM.Model
                 }
             }
 
-            float count = 0;
+            double count = 0;
 
-            foreach (float liter in data)
+            foreach (double liter in data)
             {
                 count += liter;
             }
@@ -126,45 +126,45 @@ namespace Drug_O_Meter.MVVM.Model
             return stringDates;
         }
 
-        public static float InTotal(string drug)
+        public static double InTotal(string drug)
         {
             List<string> files = Files.Names();
-            float count = 0;
+            double count = 0;
 
             foreach (string file in files)
             {
                 drugConsumtion currentFile = Files.Read<drugConsumtion>($"{Folder}/{file}");
                 var value = currentFile.GetType().GetProperty(drug).GetValue(currentFile);
-                float floatValue = (float)value;
+                double floatValue = (double)value;
                 count += floatValue;
             }
 
-            return (float)Math.Round(count, 2);
+            return (double)Math.Round(count, 2);
         }
 
-        public static float AverageDay(string drug)
+        public static double AverageDay(string drug)
         {
-            List<float> values = Values(drug);
-            float sum = 0f;
+            List<double> values = Values(drug);
+            double sum = 0f;
 
-            foreach (float value in values)
+            foreach (double value in values)
             {
                 sum += value;
             }
 
-            float arithmeticMean = sum / values.Count;
+            double arithmeticMean = sum / values.Count;
 
-            return (float)Math.Round(arithmeticMean, 2);
+            return (double)Math.Round(arithmeticMean, 2);
         }
 
         public static string SoberSince(string drug)
         {
-            List<float> values = Values(drug);
+            List<double> values = Values(drug);
             values.Reverse();
             int counter = 0;
             string text = "BUG Tage";
 
-            foreach (float value in values)
+            foreach (double value in values)
             {
 
                 if (!values.Exists(num => num != 0))
@@ -204,7 +204,7 @@ namespace Drug_O_Meter.MVVM.Model
 
         public static string SoberLongestStreak(string drug)
         {
-            List<float> values = Values(drug);
+            List<double> values = Values(drug);
             values.Reverse();
             int currentIndex = 0;
             int counter = 0;
@@ -257,26 +257,29 @@ namespace Drug_O_Meter.MVVM.Model
             List<string> files = Files.Names();
             files.Reverse();
 
-            int i = files.Count();
+            int i = 0;
 
             foreach (string date in files)
             {
                 drugConsumtion currentFile = Files.Read<drugConsumtion>($"{Folder}/{date}");
                 var value = currentFile.GetType().GetProperty(drug).GetValue(currentFile);
-                float floatValue = (float)value;
+                double floatValue = (double)value;
 
                 if (floatValue != 0)
                 {
-                    List<string> list = new List<string>() {date, floatValue.ToString(), i.ToString()};
+                    List<string> list = new List<string>() {date, floatValue.ToString()};
                     entries.Add(list);
-                    i -= 1;
+                    i += 1;
                 }
 
-                if (entries.Count > 5)
-                {
-                    break;
-                }
+            }
 
+
+            //Entries get numbered
+            foreach (List<string> list in entries)
+            {
+                list.Add(i.ToString());
+                i -= 1;
             }
 
             return entries;

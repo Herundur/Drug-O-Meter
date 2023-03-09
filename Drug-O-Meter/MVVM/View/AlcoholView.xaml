@@ -11,14 +11,8 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              d:DesignHeight="450" d:DesignWidth="760">
 
-
-    <UserControl.DataContext>
-        <y:ViewModelAlcoholChart x:Name="alcoholChart"/>
-    </UserControl.DataContext>
-
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="16*"/>
             <RowDefinition Height="59*"/>
         </Grid.RowDefinitions>
 
@@ -160,97 +154,133 @@
                     </Border>
                 </StackPanel>
             </Border>
+            <Border
+                VerticalAlignment="Top"
+                Grid.Column="0"
+                Width="250"
+                Height="240"
+                Background="{StaticResource b1}"
+                CornerRadius="10">
 
-            <Border Grid.Column="0"
-                    Width="220"
-                    Height="360"
-                    Background="{StaticResource b1}"
-                    CornerRadius="10">
-
-                <StackPanel>
+                <Grid Height="240">
 
                     <TextBlock Text="Letzte Einträge"
-                           FontSize="17"
-                           FontWeight="SemiBold"
-                           FontFamily="Inter"
-                           Foreground="{StaticResource w1}"
-                           Margin="16"/>
+                               FontSize="17"
+                               FontWeight="SemiBold"
+                               FontFamily="Inter"
+                               Foreground="{StaticResource w1}"
+                               Margin="16"/>
 
-                    <ItemsControl Name="recentEntries" Height="300">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border Height="48"
-                                    Width="220"
-                                    Grid.Column="0">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="32" />
-                                            <ColumnDefinition Width="94"/>
-                                            <ColumnDefinition Width="94"/>
-                                        </Grid.ColumnDefinitions>
+                    <Grid Height="200"
+                          VerticalAlignment="Bottom">
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl x:Name="recentEntries">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Border Height="48"
+                                                Width="220">
 
-                                        <Border Grid.Column="0">
-                                            <materialDesign:PackIcon
-                                                Kind="{Binding IconKind}"
-                                                Foreground="{StaticResource alcoholOn}"
-                                                HorizontalAlignment="Left"
-                                                VerticalAlignment="Center"
-                                                Height="24"
-                                                Width="24"/>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="32" />
+                                                    <ColumnDefinition Width="94"/>
+                                                    <ColumnDefinition Width="94"/>
+                                                </Grid.ColumnDefinitions>
+
+                                                <Border Grid.Column="0">
+                                                    <materialDesign:PackIcon
+                                                    Kind="{Binding IconKind}"
+                                                    Foreground="{StaticResource alcoholOn}"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Height="24"
+                                                    Width="24"/>
+                                                </Border>
+
+                                                <Border Grid.Column="1">
+                                                    <DockPanel Height="30"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Left"
+                                                    Margin="4,0,0,0">
+                                                        <TextBlock Text="{Binding Beer}"
+                                                       Foreground="{StaticResource w2}"
+                                                       FontSize="14"
+                                                       FontWeight="Medium"
+                                                       FontFamily="Inter"
+                                                       DockPanel.Dock="Top"/>
+                                                        <TextBlock Text="{Binding Nummer}"
+                                                       Foreground="{StaticResource w3}"
+                                                       FontSize="12"
+                                                       FontWeight="Normal"
+                                                       FontFamily="Inter"
+                                                       DockPanel.Dock="Bottom"/>
+                                                    </DockPanel>
+                                                </Border>
+
+                                                <Border Grid.Column="2">
+                                                    <DockPanel Height="30"
+                                                    VerticalAlignment="Center"
+                                                    HorizontalAlignment="Right"
+                                                    Margin="0,0,0,0">
+                                                        <TextBlock Text="{Binding Value}"
+                                                       TextAlignment="Right"
+                                                       Foreground="{StaticResource w2}"
+                                                       FontSize="14"
+                                                       FontWeight="Medium"
+                                                       FontFamily="Inter"
+                                                       DockPanel.Dock="Top"/>
+                                                        <TextBlock Text="{Binding Date}"
+                                                       TextAlignment="Right"
+                                                       Foreground="{StaticResource w3}"
+                                                       FontSize="12"
+                                                       FontWeight="Normal"
+                                                       FontFamily="Inter"
+                                                       DockPanel.Dock="Bottom"/>
+                                                    </DockPanel>
+                                                </Border>
+
+                                            </Grid>
+
                                         </Border>
-
-                                        <Border Grid.Column="1">
-                                            <DockPanel Height="30"
-                                                VerticalAlignment="Center"
-                                                HorizontalAlignment="Left"
-                                                Margin="4,0,0,0">
-                                                <TextBlock Text="{Binding Beer}"
-                                                   Foreground="{StaticResource w2}"
-                                                   FontSize="14"
-                                                   FontWeight="Medium"
-                                                   FontFamily="Inter"
-                                                   DockPanel.Dock="Top"/>
-                                                <TextBlock Text="{Binding Nummer}"
-                                                   Foreground="{StaticResource w3}"
-                                                   FontSize="12"
-                                                   FontWeight="Normal"
-                                                   FontFamily="Inter"
-                                                   DockPanel.Dock="Bottom"/>
-                                            </DockPanel>
-                                        </Border>
-
-                                        <Border Grid.Column="2">
-                                            <DockPanel Height="30"
-                                                VerticalAlignment="Center"
-                                                HorizontalAlignment="Right"
-                                                Margin="0,0,0,0">
-                                                <TextBlock Text="{Binding Value}"
-                                                   TextAlignment="Right"
-                                                   Foreground="{StaticResource w2}"
-                                                   FontSize="14"
-                                                   FontWeight="Medium"
-                                                   FontFamily="Inter"
-                                                   DockPanel.Dock="Top"/>
-                                                <TextBlock Text="{Binding Date}"
-                                                   TextAlignment="Right"
-                                                   Foreground="{StaticResource w3}"
-                                                   FontSize="12"
-                                                   FontWeight="Normal"
-                                                   FontFamily="Inter"
-                                                   DockPanel.Dock="Bottom"/>
-                                            </DockPanel>
-                                        </Border>
-
-                                    </Grid>
-
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                </StackPanel>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
 
             </Border>
         </StackPanel>
+
+        <Border Grid.Column="1"
+                Background="{StaticResource b1}"
+                Width="240"
+                Height="240"
+                CornerRadius="10"
+                VerticalAlignment="Center">
+            <Border.DataContext>
+                <y:ViewModelAlcoholBarChart x:Name="alcoholBarChart"/>
+            </Border.DataContext>
+
+            <StackPanel>
+
+                <TextBlock Text="Konsum nach Wochentag"
+                           FontSize="17"
+                            FontWeight="SemiBold"
+                            FontFamily="Inter"
+                            Foreground="{StaticResource w1}"
+                            Margin="16"/>
+
+                <lvc:CartesianChart
+                    Series="{Binding Series}"
+                    XAxes="{Binding XAxes}"
+                    YAxes="{Binding YAxes}"
+                    Width="160"
+                    Height="160">
+                </lvc:CartesianChart>
+            </StackPanel>
+
+        </Border>
+
     </Grid>
 </UserControl>

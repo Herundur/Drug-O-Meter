@@ -13,8 +13,8 @@ namespace Drug_O_Meter.MVVM.View
     public partial class CannabisView : UserControl
     {
 
-        float counter = 0;
-        float litersLast31Days;
+        double counter = 0;
+        double litersLast31Days;
         string folder = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "DrugOMeter/data");
         public CannabisView()
         {

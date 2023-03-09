@@ -20,7 +20,7 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
-    <Border Background="{StaticResource  b2}"
+    <Border Background="{StaticResource  b4}"
             CornerRadius="10"
             ClipToBounds="True">
         
